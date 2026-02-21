@@ -1,0 +1,5 @@
+databases:
+  party_protocol:
+    allow_sql: false
+  party_bid:
+    allow_sql: false

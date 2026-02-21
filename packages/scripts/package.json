@@ -1,0 +1,17 @@
+{
+  "name": "scripts",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate_contracts": "tsx src/generate_contracts.ts",
+    "build": "tsc --noEmit",
+    "lint": "eslint --cache ."
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.6.3"
+  }
+}

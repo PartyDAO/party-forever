@@ -1,0 +1,7 @@
+{
+  "scripts": {
+    "setup": "./conductor_setup.sh",
+    "run": "yarn dev",
+    "archive": "rm -rf node_modules"
+  }
+}

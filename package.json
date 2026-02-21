@@ -1,0 +1,50 @@
+{
+  "name": "party-forever",
+  "version": "0.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "format": "prettier --cache --write .",
+    "format:check": "prettier --cache --check .",
+    "verify": "prettier --cache --write . && turbo run lint build test",
+    "deploy": "turbo run build && yarn wrangler pages deploy dist --project-name=party-forever",
+    "deploy:preview": "turbo run build && yarn wrangler pages deploy dist --project-name=party-forever --branch",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.0.0",
+    "eslint": "^9.0.0",
+    "eslint-config-prettier": "^10.0.0",
+    "eslint-plugin-react": "^7.37.0",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "eslint-plugin-unused-imports": "^4.0.0",
+    "husky": "^9.0.0",
+    "lint-staged": "^15.0.0",
+    "prettier": "^3.0.0",
+    "turbo": "^2.3.0",
+    "typescript-eslint": "^8.0.0",
+    "vitest": "^4.0.18",
+    "wrangler": "^4.66.0"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,css}": [
+      "prettier --write"
+    ]
+  },
+  "packageManager": "yarn@1.22.22",
+  "resolutions": {
+    "viem": "^2.45.1",
+    "vite": "^7.0.0"
+  }
+}

@@ -1,0 +1,79 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  deploy:
+    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    env:
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      VITE_RPC_URL_MAINNET: ${{ secrets.VITE_RPC_URL_MAINNET }}
+      VITE_RPC_URL_BASE: ${{ secrets.VITE_RPC_URL_BASE }}
+      VITE_RPC_URL_ZORA: ${{ secrets.VITE_RPC_URL_ZORA }}
+      VITE_WALLETCONNECT_PROJECT_ID: ${{ secrets.VITE_WALLETCONNECT_PROJECT_ID }}
+      VITE_DB_API_URL: ${{ secrets.VITE_DB_API_URL }}
+      VITE_ALCHEMY_API_KEY: ${{ secrets.VITE_ALCHEMY_API_KEY }}
+      VITE_OPENSEA_API_KEY: ${{ secrets.VITE_OPENSEA_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: yarn
+          cache-dependency-path: yarn.lock
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Deploy (production)
+        if: github.event_name == 'push'
+        run: yarn deploy
+
+      - name: Deploy (preview)
+        if: github.event_name == 'pull_request'
+        id: preview
+        env:
+          BRANCH_NAME: ${{ github.head_ref }}
+        run: |
+          DEPLOY_OUTPUT=$(yarn deploy:preview "$BRANCH_NAME" 2>&1)
+          echo "$DEPLOY_OUTPUT"
+          echo "output<<EOF" >> "$GITHUB_OUTPUT"
+          echo "$DEPLOY_OUTPUT" >> "$GITHUB_OUTPUT"
+          echo "EOF" >> "$GITHUB_OUTPUT"
+          ALIAS_URL=$(echo "$DEPLOY_OUTPUT" | grep -oP '(?<=Deployment alias URL: )https://\S+')
+          echo "alias_url=$ALIAS_URL" >> "$GITHUB_OUTPUT"
+
+      - name: Comment preview URL on PR
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const aliasUrl = `${{ steps.preview.outputs.alias_url }}`;
+            const body = `### Preview link:\n${aliasUrl}`;
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+            const existing = comments.find(c => c.body.startsWith('### Preview link:'));
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existing.id,
+                body,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body,
+              });
+            }

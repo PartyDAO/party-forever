@@ -1,0 +1,31 @@
+---
+description: Use arrow function syntax for React components
+globs: **/*.tsx
+alwaysApply: false
+---
+
+# Arrow Function Components
+
+Always use arrow function syntax for React components instead of function declarations.
+
+```tsx
+// ❌ BAD - function declaration
+function MyComponent() {
+  return <div>Hello</div>;
+}
+
+// ❌ BAD - function expression
+const MyComponent = function() {
+  return <div>Hello</div>;
+};
+
+// ✅ GOOD - arrow function
+const MyComponent = () => {
+  return <div>Hello</div>;
+};
+
+// ✅ GOOD - arrow function with props
+const MyComponent = ({ title, onClick }: Props) => {
+  return <button onClick={onClick}>{title}</button>;
+};
+```

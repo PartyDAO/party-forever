@@ -1,0 +1,62 @@
+---
+description: 
+globs: **/*.tsx
+alwaysApply: false
+---
+
+# Component Organization
+
+## Extract Reusable Components
+
+When a component could be reused elsewhere, create it in a separate file:
+
+```tsx
+// ❌ BAD - Reusable button defined inline
+function Dashboard() {
+  const IconButton = ({ icon, onClick }) => (
+    <button onClick={onClick}>{icon}</button>
+  );
+  
+  return <IconButton icon="+" onClick={handleAdd} />;
+}
+
+// ✅ GOOD - Reusable component in its own file
+// components/IconButton.tsx
+export function IconButton({ icon, onClick }) {
+  return <button onClick={onClick}>{icon}</button>;
+}
+```
+
+## Split Visual Sections
+
+Break down pages into logical visual section components:
+
+```tsx
+// ❌ BAD - Everything in one component
+function ProfilePage() {
+  return (
+    <div>
+      <div>{/* 50 lines of header markup */}</div>
+      <div>{/* 80 lines of stats markup */}</div>
+      <div>{/* 60 lines of activity feed markup */}</div>
+    </div>
+  );
+}
+
+// ✅ GOOD - Visual sections as separate components
+function ProfilePage() {
+  return (
+    <div>
+      <ProfileHeader user={user} />
+      <ProfileStats stats={stats} />
+      <ActivityFeed activities={activities} />
+    </div>
+  );
+}
+```
+
+## Guidelines
+
+- Create new files in a `components/` directory or colocated with the feature
+- Each component file should export a single primary component
+- Name files after the component they export (e.g., `ProfileHeader.tsx`)

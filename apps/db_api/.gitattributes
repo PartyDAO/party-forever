@@ -1,0 +1,1 @@
+data/party_bid.db filter=lfs diff=lfs merge=lfs -text

@@ -1,0 +1,40 @@
+---
+description: 
+globs: "**/*.{css, scss, tsx}"
+alwaysApply: false
+---
+
+# Flexbox Layout Standards
+
+Use flexbox with `gap` and `padding` for layout. Avoid `margin` and `float` for positioning.
+
+## Preferred Approach
+
+```css
+/* ✅ GOOD */
+.container {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+}
+```
+
+```css
+/* ❌ BAD */
+.container {
+  float: left;
+}
+
+.item {
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+}
+```
+
+## Key Principles
+
+- Use `display: flex` or `display: inline-flex` for layout
+- Use `gap` to space child elements
+- Use `padding` for internal spacing within containers
+- Avoid `margin` for spacing between flex children
+- Never use `float` for layout purposes

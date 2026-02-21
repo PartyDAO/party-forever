@@ -1,0 +1,29 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "tasks": {
+    "build": {
+      "outputs": ["dist/**", "../../dist/**"],
+      "passThroughEnv": [
+        "VITE_RPC_URL_MAINNET",
+        "VITE_RPC_URL_BASE",
+        "VITE_RPC_URL_ZORA",
+        "VITE_WALLETCONNECT_PROJECT_ID",
+        "VITE_DB_API_URL",
+        "VITE_ALCHEMY_API_KEY",
+        "VITE_OPENSEA_API_KEY"
+      ]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true,
+      "passThroughEnv": ["CONDUCTOR_PORT", "KGPT_MACHINE"]
+    },
+    "lint": {
+      "inputs": ["src/**/*.ts", "src/**/*.tsx", "eslint.config.*", "../../eslint.config.*"]
+    },
+    "test": {
+      "cache": false,
+      "passThroughEnv": ["RPC_URL_MAINNET", "RPC_URL_BASE", "ETHERSCAN_API_KEY"]
+    }
+  }
+}

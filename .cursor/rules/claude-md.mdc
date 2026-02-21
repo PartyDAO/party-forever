@@ -1,0 +1,15 @@
+---
+description: Reference CLAUDE.md for project context and conventions
+alwaysApply: true
+---
+
+# CLAUDE.md
+
+Refer to the project doc **CLAUDE.md** at the repo root for:
+
+- Repo structure (apps/frontend, packages/contracts, packages/scripts)
+- Conventions (file naming, imports, viem, Radix UI, forms, etc.)
+- Contract class pattern and frontend conventions
+- Rules in `.cursor/rules/` (component-organization, arrow-function-components, flexbox-layout, yarn)
+
+When in doubt about how to do something in this codebase, check CLAUDE.md first.

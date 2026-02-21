@@ -1,0 +1,6 @@
+{
+  "setup": [
+    "yarn && cp $SUPERSET_ROOT_PATH/apps/party-protocol/.env ./apps/party-protocol/.env && cp $SUPERSET_ROOT_PATH/apps/create/.env ./apps/create/.env && cp $SUPERSET_ROOT_PATH/apps/partybid/.env ./apps/partybid/.env && cp $SUPERSET_ROOT_PATH/packages/scripts/.env ./packages/scripts/.env && git submodule update --init --recursive"
+  ],
+  "teardown": []
+}

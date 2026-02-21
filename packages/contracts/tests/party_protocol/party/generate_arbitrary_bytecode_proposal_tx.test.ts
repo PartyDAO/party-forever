@@ -1,0 +1,52 @@
+import { describe, expect, it } from "vitest";
+
+import { Party } from "../../../src/index.ts";
+
+describe("generateArbitraryBytecodeProposalTx", () => {
+  const partyAddress = "0x87088b14c02e639453e91b4588611d4042ca1fc0";
+  const networkName = "mainnet" as const;
+
+  it("encodes a propose call for an ArbitraryCalls proposal", async () => {
+    const party = await Party.create(networkName, partyAddress);
+
+    const result = party.generateArbitraryBytecodeProposalTx({
+      maxExecutableTime: "1750870393",
+      cancelDelay: "3628800",
+      latestSnapIndex: "3",
+      target: "0x77F7aAB31C98Ff3e97f8a1a9807Dc9780CFB0272",
+      data: "0x3ccfd60b"
+    });
+
+    expect(result.to).toBe(partyAddress);
+
+    const expectedData =
+      "0xa25632fd0000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000300000000000000000000000000000000000000000000000000000000685c29790000000000000000000000000000000000000000000000000000000000375f00000000000000000000000000000000000000000000000000000000000000006000000000000000000000000000000000000000000000000000000000000001440000000400000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000002000000000000000000000000077f7aab31c98ff3e97f8a1a9807dc9780cfb0272000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000043ccfd60b0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";
+
+    expect(result.data.toLowerCase()).toBe(expectedData.toLowerCase());
+  });
+
+  it("encodes a propose call with a non-zero value", async () => {
+    const party = await Party.create(networkName, partyAddress);
+
+    const resultWithValue = party.generateArbitraryBytecodeProposalTx({
+      maxExecutableTime: "1750870393",
+      cancelDelay: "3628800",
+      latestSnapIndex: "3",
+      target: "0x77F7aAB31C98Ff3e97f8a1a9807Dc9780CFB0272",
+      data: "0x3ccfd60b",
+      value: 1000000000000000000n
+    });
+
+    const resultWithoutValue = party.generateArbitraryBytecodeProposalTx({
+      maxExecutableTime: "1750870393",
+      cancelDelay: "3628800",
+      latestSnapIndex: "3",
+      target: "0x77F7aAB31C98Ff3e97f8a1a9807Dc9780CFB0272",
+      data: "0x3ccfd60b"
+    });
+
+    expect(resultWithValue.to).toBe(partyAddress);
+    expect(resultWithValue.data).toBeDefined();
+    expect(resultWithValue.data).not.toBe(resultWithoutValue.data);
+  });
+});
