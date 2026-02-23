@@ -168,7 +168,7 @@ const DbApiUrlSettingCard = () => {
           <>
             <Input
               type="url"
-              placeholder="https://party-db-api.fly.dev/"
+              placeholder="https://api.partydao.org/"
               value={inputValue}
               onChange={(e) => {
                 setInputValue(e.target.value);
