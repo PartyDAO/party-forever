@@ -23,7 +23,7 @@
     },
     "test": {
       "cache": false,
-      "passThroughEnv": ["RPC_URL_MAINNET", "RPC_URL_BASE", "ETHERSCAN_API_KEY"]
+      "passThroughEnv": ["VITE_RPC_URL_MAINNET", "VITE_RPC_URL_BASE", "ETHERSCAN_API_KEY"]
     }
   }
 }

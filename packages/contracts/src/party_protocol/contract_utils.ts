@@ -26,9 +26,9 @@ export function findContractAbi<T>(
 
 function getNetworkConfig(networkName: NetworkName) {
   const configs = {
-    mainnet: { chain: mainnet, rpcEnvVar: "RPC_URL_MAINNET" },
-    base: { chain: base, rpcEnvVar: "RPC_URL_BASE" },
-    zora: { chain: zora, rpcEnvVar: "RPC_URL_ZORA" }
+    mainnet: { chain: mainnet, rpcEnvVar: "VITE_RPC_URL_MAINNET" },
+    base: { chain: base, rpcEnvVar: "VITE_RPC_URL_BASE" },
+    zora: { chain: zora, rpcEnvVar: "VITE_RPC_URL_ZORA" }
   } as const;
 
   return configs[networkName];
