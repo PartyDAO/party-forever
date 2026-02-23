@@ -56,7 +56,7 @@ The Settings page also has a developer mode toggle. When enabled, it adds an RPC
 
 All apps are static front-end SPAs — the build output is plain HTML/JS/CSS that can be hosted anywhere. The repo is currently configured to deploy to Cloudflare Pages via Wrangler, but any static hosting provider will work.
 
-The only backend service is the DB API (`apps/db_api`), which is optional. A publicly hosted instance is available at https://party-db-api.fly.dev/ (already set in the `.env.sample` files). If you want to run your own, see `apps/db_api` for instructions.
+The only backend service is the DB API (`apps/db_api`), which is optional. A publicly hosted instance is available at https://api.partydao.org/ (already set in the `.env.sample` files). If you want to run your own, see `apps/db_api` for instructions.
 
 ## Contract Generation
 

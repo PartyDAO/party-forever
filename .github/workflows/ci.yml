@@ -68,8 +68,6 @@ jobs:
       VITE_RPC_URL_BASE: ${{ secrets.VITE_RPC_URL_BASE }}
       VITE_RPC_URL_ZORA: ${{ secrets.VITE_RPC_URL_ZORA }}
       ETHERSCAN_API_KEY: ${{ secrets.ETHERSCAN_API_KEY }}
-      RPC_URL_MAINNET: ${{ secrets.RPC_URL_MAINNET }}
-      RPC_URL_BASE: ${{ secrets.RPC_URL_BASE }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
