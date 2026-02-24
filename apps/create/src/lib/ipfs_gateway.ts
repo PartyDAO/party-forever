@@ -2,7 +2,7 @@ import { IPFS_GATEWAY } from "./constants.ts";
 
 const STORAGE_KEY = "create_ipfs_gateway";
 
-/** Format: https://host/path ending in /ipfs (e.g. https://partydao.mypinata.cloud/ipfs). */
+/** Format: https://host/path ending in /ipfs (e.g. https://ipfs-node.fly.dev/ipfs). */
 const IPFS_GATEWAY_URL_REGEX = /^https:\/\/.+\/ipfs\/?$/i;
 
 export const DEFAULT_IPFS_GATEWAY = IPFS_GATEWAY;

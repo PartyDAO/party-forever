@@ -1,7 +1,7 @@
 import type { NetworkName } from "@party-forever/contracts";
 
 export const DATA_URI_JSON_BASE64_PREFIX = "data:application/json;base64,";
-export const IPFS_GATEWAY = "https://gateway.pinata.cloud/ipfs/";
+export const IPFS_GATEWAY = "https://ipfs-node.fly.dev/ipfs/";
 
 export const LARGE_PARTY_THRESHOLD = 500n;
 

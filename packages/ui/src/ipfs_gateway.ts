@@ -1,7 +1,7 @@
 const STORAGE_KEY = "party-forever-ipfs-gateway";
 const IPFS_GATEWAY_URL_REGEX = /^https:\/\/.+\/ipfs\/?$/i;
 
-export const DEFAULT_IPFS_GATEWAY = "https://partydao.mypinata.cloud/ipfs";
+export const DEFAULT_IPFS_GATEWAY = "https://ipfs-node.fly.dev/ipfs";
 
 export const getIpfsGatewayFromStorage = (): string => {
   try {

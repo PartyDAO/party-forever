@@ -218,9 +218,7 @@ export const SettingsPage = ({ rpcNetworkNames, showDbApiUrl }: SettingsPageProp
       return;
     }
     if (!isValidIpfsGatewayUrl(trimmed)) {
-      setIpfsError(
-        "URL must be https and end with /ipfs (e.g. https://gateway.mypinata.cloud/ipfs)."
-      );
+      setIpfsError("URL must be https and end with /ipfs (e.g. https://ipfs-node.fly.dev/ipfs).");
       return;
     }
     setIpfsGatewayInStorage(trimmed);
