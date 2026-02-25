@@ -65,3 +65,7 @@ The only backend service is the DB API (`apps/db_api`), which is optional. A pub
 ## Contributing
 
 See [CLAUDE.md](./CLAUDE.md) for coding conventions, file naming rules, and architectural guidelines. If you run into any issues, reach out at [support@partydao.org](mailto:support@partydao.org).
+
+## IPFS
+
+Images for parties created on party-protocol and on create.party.app were uploaded and pinned to IPFS.  Additional details on the preservation of these IPFS images is available at the [PartyDAO/ipfs-forever](https://github.com/PartyDAO/ipfs-forever) repo.
