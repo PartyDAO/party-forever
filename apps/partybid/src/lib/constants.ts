@@ -1,3 +1,3 @@
 export const CHAIN_ID = 1;
 
-export const IPFS_GATEWAY = "https://partydao.mypinata.cloud/ipfs";
+export const IPFS_GATEWAY = "https://ipfs-node.fly.dev/ipfs";
