@@ -64,7 +64,7 @@ The only backend service is the DB API (`apps/db_api`), which is optional. A pub
 
 ## Contributing
 
-See [CLAUDE.md](./CLAUDE.md) for coding conventions, file naming rules, and architectural guidelines. If you run into any issues, reach out at [support@partydao.org](mailto:support@partydao.org).
+See [CLAUDE.md](./CLAUDE.md) for coding conventions, file naming rules, and architectural guidelines. If you run into any issues reach out at [support@partydao.org](mailto:support@partydao.org).
 
 ## IPFS
 
