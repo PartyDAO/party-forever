@@ -84,6 +84,14 @@ export const Footer = ({ className }: FooterProps) => (
           />
           <div className="flex flex-row sm:flex-col gap-4 sm:gap-2 sm:items-end">
             <a
+              href="https://github.com/PartyDAO/party-forever"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs text-muted-foreground hover:text-foreground transition-colors uppercase font-bold tracking-wider"
+            >
+              GitHub
+            </a>
+            <a
               href="https://x.com/prtyDAO"
               target="_blank"
               rel="noopener noreferrer"
