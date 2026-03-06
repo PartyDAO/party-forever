@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link, useParams } from "react-router";
+import { useConnectModal } from "@rainbow-me/rainbowkit";
 import { parseEther } from "viem";
 import { useAccount } from "wagmi";
 
@@ -53,6 +54,7 @@ const ERC20_BALANCE_ABI = [
 export const TokenDetails = () => {
   const { address } = useParams<{ address: string }>();
   const { address: userAddress } = useAccount();
+  const { openConnectModal } = useConnectModal();
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -215,7 +217,10 @@ export const TokenDetails = () => {
                 >
                   Sell
                 </Button>
-                <Button className="flex-1" onClick={() => setBuyModalOpen(true)}>
+                <Button
+                  className="flex-1"
+                  onClick={() => (userAddress ? setBuyModalOpen(true) : openConnectModal?.())}
+                >
                   Buy
                 </Button>
               </div>
