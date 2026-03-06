@@ -18,15 +18,6 @@ const App = () => {
           Party Create
         </NavLink>
         <LandingLink />
-        <NavLink
-          to="/"
-          end
-          className={({ isActive }) =>
-            `party-nav-link text-sm font-medium ${isActive ? "active text-[#00d4ff]" : ""}`
-          }
-        >
-          Search
-        </NavLink>
         {address && (
           <NavLink
             to={`/profile/${address}`}
