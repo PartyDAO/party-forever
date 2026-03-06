@@ -299,7 +299,8 @@ export const Profile = () => {
           <CardHeader>
             <CardTitle>Tokens</CardTitle>
             <CardDescription>
-              Party tokens you hold. Open to view, buy, or sell on this app.
+              Party tokens you hold. Open to view, buy, or sell on this app. Only ERC20 tokens are
+              included.
             </CardDescription>
           </CardHeader>
           <CardContent className="flex flex-col gap-6">
