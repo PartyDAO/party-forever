@@ -1,25 +1,28 @@
-## Data
+### Party DB API
 
-The SQLite files are stored in Git LFS. After cloning, run:
+A lightweight API of Party Protocol data, based on a snapshot and static sqlite files.
+
+### Set up
 
 ```bash
 git lfs pull
-```
-
-## Deploying
-
-Datasette can be deployed anywhere that runs Docker — a VPS, any cloud provider, etc. Below is an example using Fly.io since it's affordable and easy.
-
-### Fly.io
-
-```bash
 brew install flyctl
 flyctl auth login
-pipx install datasette
-pipx inject datasette datasette-publish-fly
-datasette publish fly ./data/party_protocol.db ./data/party_bid.db \
-  --app="party-db-api" \
-  --extra-options="--cors --port 8080" \
-  --org="your-org-here" \
-  -m datasette.yml
+fly apps create party-db-api --org your-org-here   # only if the app doesn't exist yet
 ```
+
+> If you hit `This repository exceeded its LFS budget`, download the two `.db` files
+> from the GitHub web UI ([apps/db_api/data](https://github.com/PartyDAO/party-forever/tree/main/apps/db_api/data))
+> and drop them into `apps/db_api/data/`, replacing the pointer files.
+
+### Deploy
+
+After completing 'Set up', from `apps/db_api`:
+
+```bash
+fly deploy
+```
+
+`fly deploy` reads `fly.toml` and builds the `Dockerfile`, which bakes
+`./data/party_protocol.db` and `./data/party_bid.db` into the image and serves them
+with `datasette serve -i ...`.
